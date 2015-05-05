@@ -281,7 +281,7 @@ public class ExtractParametersFilter extends SubmitServerFilter {
 
         }
 
-        if (submissionPK == null || !studentSpecifiedByInstructor) {
+        if (true || submissionPK == null || !studentSpecifiedByInstructor) {
           // Get Collection
           submissionList = Submission.lookupAllByStudentPKAndProjectPK(studentPK, projectPK, conn);
 
