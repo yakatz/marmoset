@@ -99,9 +99,9 @@ public class ExtractParametersFilter extends SubmitServerFilter {
     String sortKey = parser.getOptionalCheckedParameter(SORT_KEY);
     Integer testRunPK = parser.getIntegerParameter("testRunPK", null);
     @Submission.PK
-    Integer submissionPK = parser.getIntegerParameter("submissionPK", null);
-    Integer projectPK = parser.getIntegerParameter("projectPK", null);
-    Integer coursePK = parser.getIntegerParameter(COURSE_PK, null);
+    Integer submissionPK = Submission.asPK(parser.getIntegerParameter("submissionPK", null));
+    Integer projectPK = Project.asPK(parser.getIntegerParameter("projectPK", null));
+    Integer coursePK = Course.asPK(parser.getIntegerParameter(COURSE_PK, null));
     @Student.PK
     Integer studentPK = Student.asPK(parser.getIntegerParameter("studentPK", null));
     @StudentRegistration.PK
@@ -543,6 +543,7 @@ public class ExtractParametersFilter extends SubmitServerFilter {
 
       request.setAttribute("instructorViewOfStudent", Boolean.valueOf(viewOfAnotherStudentsCode));
 
+      request.setAttribute("studentSpecifiedByInstructor", Boolean.valueOf(studentSpecifiedByInstructor));
       request.setAttribute("instructorCourses",
           userSession.isSuperUser() ? courseList : userSession.getInstructorCourses());
       if (testRun != null)

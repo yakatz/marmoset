@@ -365,6 +365,14 @@ not empty testOutcomeCollection.releaseOutcomes}">
                                                 </h3>
                                             </c:when>
 											<c:when test="${releaseInformation.releaseRequestOK}">
+											<c:choose>
+											<c:when test="${studentSpecifiedByInstructor}">
+											<p>
+												<h3>
+													Student can release test this submission 
+												</h3>
+											</c:when>
+											<c:otherwise>
 												<c:url var="releaseRequestLink"
 													value="/view/confirmReleaseRequest.jsp">
 													<c:param name="submissionPK"
@@ -375,6 +383,8 @@ not empty testOutcomeCollection.releaseOutcomes}">
 													<a href="${releaseRequestLink}"> Release test this
 														submission </a>
 												</h3>
+												</c:otherwise>
+												</c:choose>
 											</c:when>
 											<c:otherwise>
 												<p>You may not release test at this time because you do
