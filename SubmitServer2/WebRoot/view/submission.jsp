@@ -353,7 +353,14 @@ not empty testOutcomeCollection.releaseOutcomes}">
                                        
                                        <c:choose>
                                             <c:when test="${releaseInformation.releaseRequestOK && project.testSetupPK == testRun.testSetupPK}">
-                                                <c:url var="releaseRequestLink"
+                                              <c:choose>
+											<c:when test="${studentSpecifiedByInstructor}">
+											<p>
+												<h3>
+													Student can release test this submission
+													</h3>
+											</c:when>
+											<c:otherwise>  <c:url var="releaseRequestLink"
                                                     value="/action/RequestReleaseTest">
                                                     <c:param name="submissionPK"
                                                         value="${submission.submissionPK}" />
@@ -363,12 +370,15 @@ not empty testOutcomeCollection.releaseOutcomes}">
                                                     <a href="${releaseRequestLink}" class="confirm" title="Performing a release test uses up a release token (you have ${releaseInformation.tokensRemaining} remaining). You should do all you reasonably can to ensure the correctness of your code before performing a release test."> Release test this
                                                         submission </a>
                                                 </h3>
+                                                </c:otherwise></c:choose>
                                             </c:when>
 											<c:when test="${releaseInformation.releaseRequestOK}">
 											<c:choose>
 											<c:when test="${studentSpecifiedByInstructor}">
 											<p>
 												<h3>
+														Not current test setup, but student can release test this submission 
+											
 													Student can release test this submission 
 												</h3>
 											</c:when>
@@ -381,7 +391,7 @@ not empty testOutcomeCollection.releaseOutcomes}">
 												<p>
 												<h3>
 													<a href="${releaseRequestLink}"> Release test this
-														submission </a>
+														submission (Warning: not current test setup) </a>
 												</h3>
 												</c:otherwise>
 												</c:choose>
