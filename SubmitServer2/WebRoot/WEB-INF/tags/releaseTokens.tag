@@ -1,9 +1,22 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+  <!--   -->
+    <ul><li>regenerationTime <c:out value="${releaseInformation.regenerationTime}"/>
+    <li>releaseRequestOK <c:out value="${releaseInformation.releaseRequestOK}"/>
+    <li>releaseTokens <c:out value="${releaseInformation.releaseTokens}"/>
+    <li>tokensRemaining <c:out value="${releaseInformation.tokensRemaining}"/>
+   <li>afterPublic <c:out value="${releaseInformation.afterPublic}"/>
+    <li>tokensUsed <c:out value="${releaseInformation.tokensUsed}"/>
+    </ul>
+
 <p>
     You currently have ${releaseInformation.tokensRemaining} release tokens available.
     
+     
+
+    <!--  -->
     <c:if test="${not empty releaseInformation.regenerationSchedule}">
         <p>Release token(s) will regenerate at:
         <ul>
